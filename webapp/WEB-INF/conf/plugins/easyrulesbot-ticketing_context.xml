@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
+
+
+    <!-- Response processor -->
+    <bean id="easyrulesbot-ticketing.processor.inputString" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.InputStringResponseProcessor" />
+
+    <bean id="easyrulesbot-ticketing.processor.yesNo" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.MultipleValuesResponseProcessor" >
+        <property name="valueTermsMap">
+            <map>
+                <entry key="true">
+                    <list>
+                        <value>oui</value>
+                        <value>yes</value>
+                        <value>yeah</value>
+                        <value>ok</value>
+                        <value>ouai</value>
+                        <value>evidemment</value>
+                        <value>évidemment</value>
+                        <value>bien sur</value>
+                        <value>bien sûr</value>
+                        <value>of course</value>
+                        <value>affirmatif</value>
+                        <value>avec plaisir</value>
+                        <value>ouais</value>
+                        <value>oki</value>
+                    </list>
+                </entry>
+                <entry key="false">
+                    <list>
+                        <value>non</value>
+                        <value>sans façon</value>
+                        <value>négatif</value>
+                        <value>negatif</value>
+                        <value>pas la peine</value>
+                        <value>no way</value>
+                        <value>nope</value>
+                        <value>no</value>
+                    </list>
+                </entry>
+            </map>
+        </property>
+        <property name="invalidResponseMessageI18nKey">
+            <value>module.easyrulesbot.ticketing.processor.yesno.invalidResponse</value>
+        </property>
+    </bean>
+        
+    <bean id="easyrulesbot-ticketing.processor.asking.type" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.MultipleValuesResponseProcessor" >
+        <property name="valueTermsMap">
+            <map>
+                <entry key="reclamation">
+                    <list>
+                        <value>1</value>
+                    </list>
+                </entry>
+            </map>
+        </property>
+        <property name="invalidResponseMessageI18nKey">
+            <value>module.easyrulesbot.ticketing.processor.mylutecemodule.invalidResponse</value>
+        </property>
+    </bean>
+    
+    <bean id="easyrulesbot-ticketing.processor.asking.reclamation.field" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.MultipleValuesResponseProcessor" >
+        <property name="valueTermsMap">
+            <map>
+                <entry key="facilfamilles">
+                    <list>
+                        <value>1</value>
+                    </list>
+                </entry>
+            </map>
+        </property>
+        <property name="invalidResponseMessageI18nKey">
+            <value>module.easyrulesbot.ticketing.processor.mylutecemodule.invalidResponse</value>
+        </property>
+    </bean>
+    
+     <bean id="easyrulesbot-ticketing.processor.asking.reclamation.facilfamilles.problem" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.MultipleValuesResponseProcessor" >
+        <property name="valueTermsMap">
+            <map>
+                <entry key="tarif_errone_ecole_centre_loisirs">
+                    <list>
+                        <value>1</value>
+                    </list>
+                </entry>
+            </map>
+        </property>
+        <property name="invalidResponseMessageI18nKey">
+            <value>module.easyrulesbot.ticketing.processor.mylutecemodule.invalidResponse</value>
+        </property>
+    </bean>
+ 
+    
+    <!-- Filters -->
+    <bean id="easyrulesbot-ticketing.filter.profanity" class="fr.paris.lutece.plugins.easyrulesbot.service.response.filters.StopOnWordFilter" >
+        <property name="listStopWords">
+            <list>
+                <value>merde</value>
+                <value>putain</value>
+                <value>connard</value>
+            </list>
+        </property>
+        <property name="defaultMessage">
+            <value>Euh ! Veuillez rester poli SVP.</value>
+        </property>
+        <property name="messageI18nKey">
+            <list>
+                <value>module.easyrulesbot.ticketing.filters.offend.offend1</value>
+                <value>module.easyrulesbot.ticketing.filters.offend.offend2</value>
+                <value>module.easyrulesbot.ticketing.filters.offend.offend3</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="easyrulesbot-ticketing.filter.thanksfull" class="fr.paris.lutece.plugins.easyrulesbot.service.response.filters.StopOnWordFilter" >
+        <property name="listStopWords">
+            <list>
+                <value>merci</value>
+            </list>
+        </property>
+        <property name="defaultMessage">
+            <value>Je vous en prie !</value>
+        </property>
+        <property name="messageI18nKey">
+            <list>
+                <value>module.easyrulesbot.ticketing.filters.thankful.thankful1</value>
+                <value>module.easyrulesbot.ticketing.filters.thankful.thankful2</value>
+                <value>module.easyrulesbot.ticketing.filters.thankful.thankful3</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="easyrulesbot-ticketing.filter.laughing" class="fr.paris.lutece.plugins.easyrulesbot.service.response.filters.StopOnWordFilter" >
+        <property name="listStopWords">
+            <list>
+                <value>lol</value>
+                <value>mdr</value>
+                <value>ptdr</value>
+            </list>
+        </property>
+        <property name="defaultMessage">
+            <value>J'aime beaucoup rire aussi !</value>
+        </property>
+        <property name="messageI18nKey">
+            <list>
+                <value>module.easyrulesbot.ticketing.filters.laughful.laughful1</value>
+                <value>module.easyrulesbot.ticketing.filters.laughful.laughful2</value>
+                <value>module.easyrulesbot.ticketing.filters.laughful.laughful3</value>
+            </list>
+        </property>
+    </bean>
+        
+    <!-- Conditions -->
+    <bean id="easyrulesbot-ticketing.condition.undefinedDataKey" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.conditions.RuleDataKeyExistsCondition"/>
+    
+    <bean id="easyrulesbot-ticketing.condition.reclamation" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.conditions.DataValueCondition">
+        <property name="dataKey">
+            <value>asking.type</value>
+        </property>
+        <property name="dataValue">
+            <value>reclamation</value>
+        </property>
+    </bean>
+    
+    
+    <bean id="easyrulesbot-ticketing.condition.reclamation.facilfamilles" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.conditions.DataValueCondition">
+        <property name="dataKey">
+            <value>asking.reclamation.field</value>
+        </property>
+        <property name="dataValue">
+            <value>facilfamilles</value>
+        </property>
+    </bean>
+    <bean id="easyrulesbot-ticketing.condition.reclamation.facilfamilles.tarif_errone_ecole_centre_loisirs" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.conditions.DataValueCondition">
+        <property name="dataKey">
+            <value>asking.reclamation.facilfamilles.problem</value>
+        </property>
+        <property name="dataValue">
+            <value>tarif_errone_ecole_centre_loisirs</value>
+        </property>
+    </bean>
+    
+    <!-- Rules -->
+    <bean id="easyrulesbot-ticketing.rule.asking.type" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.BotRule" >
+        <property name="name">
+            <value>asking.type</value>
+        </property>    
+        <property name="priority">
+            <value>1</value>
+        </property>    
+        <property name="description">
+            <value>Asking Type</value>
+        </property>    
+        <property name="questionTemplateI18nKey">
+            <value>module.easyrulesbot.ticketing.rule.asking.type</value>
+        </property>    
+        <property name="dataKey">
+            <value>asking.type</value>
+        </property>    
+        <property name="responseProcessor">
+            <ref bean="easyrulesbot-ticketing.processor.asking.type" />
+        </property>
+        <property name="listConditions">
+            <list>
+                <ref bean="easyrulesbot-ticketing.condition.undefinedDataKey" />
+            </list>
+        </property>
+    </bean>
+
+
+
+<bean id="easyrulesbot-ticketing.rule.asking.reclamation.field" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.BotRule" >
+        <property name="name">
+            <value>asking.reclamation.field</value>
+        </property>    
+        <property name="priority">
+            <value>10</value>
+        </property>    
+        <property name="description">
+            <value>Reclamation Field</value>
+        </property>    
+        <property name="questionTemplateI18nKey">
+            <value>module.easyrulesbot.ticketing.rule.asking.reclamation.field</value>
+        </property>    
+        <property name="dataKey">
+            <value>asking.reclamation.field</value>
+        </property>    
+        <property name="responseProcessor">
+            <ref bean="easyrulesbot-ticketing.processor.asking.reclamation.field" />
+        </property>
+        <property name="listConditions">
+            <list>
+                <ref bean="easyrulesbot-ticketing.condition.undefinedDataKey" />
+                <ref bean="easyrulesbot-ticketing.condition.reclamation" /> 
+            </list>
+        </property>
+    </bean>
+    
+<bean id="easyrulesbot-ticketing.rule.asking.reclamation.facilfamilles.problem" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.BotRule" >
+        <property name="name">
+            <value>asking.reclamation.facilfamilles.problem</value>
+        </property>    
+        <property name="priority">
+            <value>15</value>
+        </property>    
+        <property name="description">
+            <value>Facil' Familles problem</value>
+        </property>    
+        <property name="questionTemplateI18nKey">
+            <value>module.easyrulesbot.ticketing.rule.asking.reclamation.facilfamilles.problem</value>
+        </property>    
+        <property name="dataKey">
+            <value>asking.reclamation.facilfamilles.facilfamilles</value>
+        </property>    
+        <property name="responseProcessor">
+            <ref bean="easyrulesbot-ticketing.processor.asking.reclamation.facilfamilles.problem" />
+        </property>
+        <property name="listConditions">
+            <list>
+                <ref bean="easyrulesbot-ticketing.condition.undefinedDataKey" />
+                <ref bean="easyrulesbot-ticketing.condition.reclamation.facilfamilles" />
+            </list>
+        </property>
+    </bean>
+    
+    
+    
+    <bean id="easyrulesbot-ticketing.rule.account" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.BotRule" >
+        <property name="name">
+            <value>account</value>
+        </property>    
+        <property name="priority">
+            <value>20</value>
+        </property>    
+        <property name="description">
+            <value>Account</value>
+        </property>    
+        <property name="questionTemplateI18nKey">
+            <value>module.easyrulesbot.ticketing.rule.account</value>
+        </property>    
+        <property name="dataKey">
+            <value>account</value>
+        </property>    
+        <property name="responseProcessor">
+            <ref bean="easyrulesbot-ticketing.processor.yesNo" />
+        </property>
+        <property name="listConditions">
+            <list>
+                <ref bean="easyrulesbot-ticketing.condition.undefinedDataKey" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="easyrulesbot-ticketing.rule.account.create" class="fr.paris.lutece.plugins.easyrulesbot.business.rules.BotRule" >
+        <property name="name">
+            <value>account.create</value>
+        </property>    
+        <property name="priority">
+            <value>25</value>
+        </property>    
+        <property name="description">
+            <value>Account creation</value>
+        </property>    
+        <property name="questionTemplateI18nKey">
+            <value>module.easyrulesbot.ticketing.rule.account.create</value>
+        </property>    
+        <property name="dataKey">
+            <value>account.create</value>
+        </property>    
+        <property name="responseProcessor">
+            <ref bean="easyrulesbot-ticketing.processor.yesNo" />
+        </property>
+        <property name="listConditions">
+            <list>
+                <ref bean="easyrulesbot-ticketing.condition.undefinedDataKey" />
+            </list>
+        </property>
+    </bean>
+    
+    
+    <!-- Rule engine -->
+    <bean id="easyrulesbot-ticketing.engine.facileFamilles" class="org.easyrules.spring.RulesEngineFactoryBean">
+        <property name="skipOnFirstAppliedRule" value="true"/>
+        <property name="skipOnFirstFailedRule" value="true"/>
+        <property name="priorityThreshold" value="100"/>
+        <property name="silentMode" value="false"/>
+        <property name="rules">
+            <list>
+                <ref bean="easyrulesbot-ticketing.rule.asking.type"/>
+                <ref bean="easyrulesbot-ticketing.rule.asking.reclamation.field"/>
+                <ref bean="easyrulesbot-ticketing.rule.asking.reclamation.facilfamilles.problem"/>
+                <ref bean="easyrulesbot-ticketing.rule.account"/>
+                <ref bean="easyrulesbot-ticketing.rule.account.create"/>
+            </list>
+        </property>
+        <property name="ruleListeners">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+    
+    <!-- Bot -->
+    <bean id="easyrulesbot-ticketing.bot.facilFamillesBot" class="fr.paris.lutece.plugins.easyrulesbot.modules.ticketing.business.TicketingBot">
+        <property name="key">
+            <value>ticketingbot</value>
+        </property>
+        <property name="nameI18nKey">
+            <value>module.easyrulesbot.ticketing.bot.luteceticketing.name</value>
+        </property>
+        <property name="descriptionI18nKey">
+            <value>module.easyrulesbot.ticketing.bot.luteceticketing.description</value>
+        </property>
+        <property name="rulesEngine">
+            <ref bean="easyrulesbot-ticketing.engine.facileFamilles" />
+        </property>
+        <property name="listResponseFilters">
+            <list>
+                <ref bean="easyrulesbot-ticketing.filter.profanity"/>
+                <ref bean="easyrulesbot-ticketing.filter.thanksfull"/>
+                <ref bean="easyrulesbot-ticketing.filter.laughing"/>
+            </list>
+        </property>
+        <property name="listAvailableLanguages">
+            <list>
+                <value>en</value>
+                <value>fr</value>
+            </list>
+        </property>
+    </bean>
+    
+    
+</beans>
