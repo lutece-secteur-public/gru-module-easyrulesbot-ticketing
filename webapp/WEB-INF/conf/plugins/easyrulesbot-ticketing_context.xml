@@ -355,6 +355,9 @@
         <property name="rulesEngine">
             <ref bean="easyrulesbot-ticketing.engine.facileFamilles" />
         </property>
+        <property name="avatarUrl">
+            <value>images/skin/plugins/easyrulesbot/modules/ticketing/bot-avatar.png</value>
+        </property>
         <property name="listResponseFilters">
             <list>
                 <ref bean="easyrulesbot-ticketing.filter.profanity"/>
@@ -364,7 +367,6 @@
         </property>
         <property name="listAvailableLanguages">
             <list>
-                <value>en</value>
                 <value>fr</value>
             </list>
         </property>
