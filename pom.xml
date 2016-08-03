@@ -56,9 +56,9 @@
 
     
     <scm>
-        <connection>scm:git:https://github.com/lutece-platform/lutece-dev-module-easyrulesbot-ticketing.git</connection>
-        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-dev-module-easyrulesbot-ticketing.git</developerConnection>
-        <url>https://github.com/lutece-platform/lutece-dev-module-easyrulesbot-ticketing.git</url>
+        <connection>scm:git:https://github.com/lutece-secteur-public/gru-module-easyrulesbot-ticketing.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-secteur-public/gru-module-easyrulesbot-ticketing.git</developerConnection>
+        <url>https://github.com/lutece-secteur-public/gru-module-easyrulesbot-ticketing.git</url>
     </scm> 
         
 </project>
