@@ -9,43 +9,8 @@
     <bean id="easyrulesbot-ticketing.processor.inputString" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.InputStringResponseProcessor" />
 
     <bean id="easyrulesbot-ticketing.processor.yesNo" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.MultipleValuesResponseProcessor" >
-        <property name="valueTermsMap">
-            <map>
-                <entry key="true">
-                    <list>
-                        <value>oui</value>
-                        <value>yes</value>
-                        <value>yeah</value>
-                        <value>ok</value>
-                        <value>ouai</value>
-                        <value>evidemment</value>
-                        <value>évidemment</value>
-                        <value>bien sur</value>
-                        <value>bien sûr</value>
-                        <value>of course</value>
-                        <value>affirmatif</value>
-                        <value>avec plaisir</value>
-                        <value>ouais</value>
-                        <value>oki</value>
-                    </list>
-                </entry>
-                <entry key="false">
-                    <list>
-                        <value>non</value>
-                        <value>sans façon</value>
-                        <value>négatif</value>
-                        <value>negatif</value>
-                        <value>pas la peine</value>
-                        <value>no way</value>
-                        <value>nope</value>
-                        <value>no</value>
-                    </list>
-                </entry>
-            </map>
-        </property>
-        <property name="invalidResponseMessageI18nKey">
-            <value>module.easyrulesbot.ticketing.processor.yesno.invalidResponse</value>
-        </property>
+        <property name="mutipleValuesMapFile" value="/WEB-INF/plugins/easyrulesbot/yesno.txt" />
+        <property name="invalidResponseMessageI18nKey" value="module.easyrulesbot.sitebuilder.processor.yesno.invalidResponse" />
     </bean>
         
     <bean id="easyrulesbot-ticketing.processor.asking.type" class="fr.paris.lutece.plugins.easyrulesbot.service.response.processors.MultipleValuesResponseProcessor" >
@@ -96,22 +61,15 @@
     
     <!-- Filters -->
     <bean id="easyrulesbot-ticketing.filter.profanity" class="fr.paris.lutece.plugins.easyrulesbot.service.response.filters.StopOnWordFilter" >
-        <property name="listStopWords">
-            <list>
-                <value>merde</value>
-                <value>putain</value>
-                <value>connard</value>
-            </list>
+        <property name="mapLocaleStopWordsFile">
+            <map>
+                <entry key="fr" value="/WEB-INF/plugins/easyrulesbot/profanity-words_fr.txt" />
+            </map>
         </property>
-        <property name="defaultMessage">
-            <value>Euh ! Veuillez rester poli SVP.</value>
-        </property>
-        <property name="messageI18nKey">
-            <list>
-                <value>module.easyrulesbot.ticketing.filters.offend.offend1</value>
-                <value>module.easyrulesbot.ticketing.filters.offend.offend2</value>
-                <value>module.easyrulesbot.ticketing.filters.offend.offend3</value>
-            </list>
+        <property name="mapLocaleResponseMessageFile">
+            <map>
+                <entry key="fr" value="/WEB-INF/plugins/easyrulesbot/profanity-responses_fr.txt" />
+            </map>
         </property>
     </bean>
     <bean id="easyrulesbot-ticketing.filter.thanksfull" class="fr.paris.lutece.plugins.easyrulesbot.service.response.filters.StopOnWordFilter" >
@@ -120,15 +78,10 @@
                 <value>merci</value>
             </list>
         </property>
-        <property name="defaultMessage">
-            <value>Je vous en prie !</value>
-        </property>
-        <property name="messageI18nKey">
-            <list>
-                <value>module.easyrulesbot.ticketing.filters.thankful.thankful1</value>
-                <value>module.easyrulesbot.ticketing.filters.thankful.thankful2</value>
-                <value>module.easyrulesbot.ticketing.filters.thankful.thankful3</value>
-            </list>
+        <property name="mapLocaleResponseMessageFile">
+            <map>
+                <entry key="fr" value="/WEB-INF/plugins/easyrulesbot/laughfing-responses_fr.txt" />
+            </map>
         </property>
     </bean>
     <bean id="easyrulesbot-ticketing.filter.laughing" class="fr.paris.lutece.plugins.easyrulesbot.service.response.filters.StopOnWordFilter" >
@@ -139,15 +92,10 @@
                 <value>ptdr</value>
             </list>
         </property>
-        <property name="defaultMessage">
-            <value>J'aime beaucoup rire aussi !</value>
-        </property>
-        <property name="messageI18nKey">
-            <list>
-                <value>module.easyrulesbot.ticketing.filters.laughful.laughful1</value>
-                <value>module.easyrulesbot.ticketing.filters.laughful.laughful2</value>
-                <value>module.easyrulesbot.ticketing.filters.laughful.laughful3</value>
-            </list>
+        <property name="mapLocaleResponseMessageFile">
+            <map>
+                <entry key="fr" value="/WEB-INF/plugins/easyrulesbot/laughfing-responses_fr.txt" />
+            </map>
         </property>
     </bean>
         
