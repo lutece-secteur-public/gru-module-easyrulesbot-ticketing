@@ -140,7 +140,7 @@
         <property name="description">
             <value>Asking Type</value>
         </property>    
-        <property name="questionTemplateI18nKey">
+        <property name="messageTemplateI18nKey">
             <value>module.easyrulesbot.ticketing.rule.asking.type</value>
         </property>    
         <property name="dataKey">
@@ -168,7 +168,7 @@
         <property name="description">
             <value>Reclamation Field</value>
         </property>    
-        <property name="questionTemplateI18nKey">
+        <property name="messageTemplateI18nKey">
             <value>module.easyrulesbot.ticketing.rule.asking.reclamation.field</value>
         </property>    
         <property name="dataKey">
@@ -195,7 +195,7 @@
         <property name="description">
             <value>Facil' Familles problem</value>
         </property>    
-        <property name="questionTemplateI18nKey">
+        <property name="messageTemplateI18nKey">
             <value>module.easyrulesbot.ticketing.rule.asking.reclamation.facilfamilles.problem</value>
         </property>    
         <property name="dataKey">
@@ -224,7 +224,7 @@
         <property name="description">
             <value>Account</value>
         </property>    
-        <property name="questionTemplateI18nKey">
+        <property name="messageTemplateI18nKey">
             <value>module.easyrulesbot.ticketing.rule.account</value>
         </property>    
         <property name="dataKey">
@@ -250,7 +250,7 @@
         <property name="description">
             <value>Account creation</value>
         </property>    
-        <property name="questionTemplateI18nKey">
+        <property name="messageTemplateI18nKey">
             <value>module.easyrulesbot.ticketing.rule.account.create</value>
         </property>    
         <property name="dataKey">
