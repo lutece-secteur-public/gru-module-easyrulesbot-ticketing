@@ -34,7 +34,7 @@
 
 package fr.paris.lutece.plugins.easyrulesbot.modules.ticketing.business;
 
-import fr.paris.lutece.plugins.easyrulesbot.service.EasyRulesBot;
+import fr.paris.lutece.plugins.easyrulesbot.service.bot.EasyRulesBot;
 import java.util.Locale;
 import java.util.Map;
 
