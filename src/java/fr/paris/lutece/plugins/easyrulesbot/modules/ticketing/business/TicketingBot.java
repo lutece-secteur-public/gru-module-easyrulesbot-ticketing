@@ -35,8 +35,6 @@
 package fr.paris.lutece.plugins.easyrulesbot.modules.ticketing.business;
 
 import fr.paris.lutece.plugins.easyrulesbot.service.bot.EasyRulesBot;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  *
@@ -44,12 +42,6 @@ import java.util.Map;
  */
 public class TicketingBot extends EasyRulesBot 
 {
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public String processData( Map<String, String> mapData, Locale locale )
-    {
-        return "Votre demande a été envoyée";
-    }
+    
+    
 }
